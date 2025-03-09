@@ -7,7 +7,7 @@ export default function Blog404Page(props: PageProps<Post[]>) {
       <h1 class="text-5xl font-bold">Oops!</h1>
       <div class="mt-8">
         <p>404 Error</p>
-        <p>Sorry about that!</p>
+        <p>Something's not right...</p>
       </div>
     </main>
   );
