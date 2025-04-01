@@ -21,6 +21,10 @@ export default function PostPage(props: PageProps<Post>) {
       <Head>
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
         <style dangerouslySetInnerHTML={{ __html: KATEX_CSS }} />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
       </Head>
       <main class="max-w-screen-md px-4 pt-16 mx-auto">
         <h1 class="text-5xl font-bold">{post.title}</h1>
