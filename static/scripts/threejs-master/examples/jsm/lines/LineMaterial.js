@@ -4,30 +4,26 @@ import {
 	UniformsLib,
 	UniformsUtils,
 	Vector2,
-} from 'three';
+} from "/scripts/threejs-master/build/three.module.js";
 
 UniformsLib.line = {
-
 	worldUnits: { value: 1 },
 	linewidth: { value: 1 },
-	resolution: { value: new Vector2( 1, 1 ) },
+	resolution: { value: new Vector2(1, 1) },
 	dashOffset: { value: 0 },
 	dashScale: { value: 1 },
 	dashSize: { value: 1 },
-	gapSize: { value: 1 } // todo FIX - maybe change to totalSize
-
+	gapSize: { value: 1 }, // todo FIX - maybe change to totalSize
 };
 
-ShaderLib[ 'line' ] = {
-
-	uniforms: UniformsUtils.merge( [
+ShaderLib["line"] = {
+	uniforms: UniformsUtils.merge([
 		UniformsLib.common,
 		UniformsLib.fog,
-		UniformsLib.line
-	] ),
+		UniformsLib.line,
+	]),
 
-	vertexShader:
-	/* glsl */`
+	vertexShader: /* glsl */ `
 		#include <common>
 		#include <color_pars_vertex>
 		#include <fog_pars_vertex>
@@ -240,8 +236,7 @@ ShaderLib[ 'line' ] = {
 		}
 		`,
 
-	fragmentShader:
-	/* glsl */`
+	fragmentShader: /* glsl */ `
 		uniform vec3 diffuse;
 		uniform float opacity;
 		uniform float linewidth;
@@ -400,7 +395,7 @@ ShaderLib[ 'line' ] = {
 			#include <premultiplied_alpha_fragment>
 
 		}
-		`
+		`,
 };
 
 /**
@@ -415,7 +410,6 @@ ShaderLib[ 'line' ] = {
  * @augments ShaderMaterial
  */
 class LineMaterial extends ShaderMaterial {
-
 	/**
 	 * Constructs a new line segments geometry.
 	 *
@@ -425,19 +419,16 @@ class LineMaterial extends ShaderMaterial {
 	 * in here. Color values can be passed any type of value accepted
 	 * by {@link Color#set}.
 	 */
-	constructor( parameters ) {
+	constructor(parameters) {
+		super({
+			type: "LineMaterial",
+			uniforms: UniformsUtils.clone(ShaderLib["line"].uniforms),
 
-		super( {
+			vertexShader: ShaderLib["line"].vertexShader,
+			fragmentShader: ShaderLib["line"].fragmentShader,
 
-			type: 'LineMaterial',
-			uniforms: UniformsUtils.clone( ShaderLib[ 'line' ].uniforms ),
-
-			vertexShader: ShaderLib[ 'line' ].vertexShader,
-			fragmentShader: ShaderLib[ 'line' ].fragmentShader,
-
-			clipping: true // required for clipping support
-
-		} );
+			clipping: true, // required for clipping support
+		});
 
 		/**
 		 * This flag can be used for type testing.
@@ -448,8 +439,7 @@ class LineMaterial extends ShaderMaterial {
 		 */
 		this.isLineMaterial = true;
 
-		this.setValues( parameters );
-
+		this.setValues(parameters);
 	}
 
 	/**
@@ -459,15 +449,11 @@ class LineMaterial extends ShaderMaterial {
 	 * @default (1,1,1)
 	 */
 	get color() {
-
 		return this.uniforms.diffuse.value;
-
 	}
 
-	set color( value ) {
-
+	set color(value) {
 		this.uniforms.diffuse.value = value;
-
 	}
 
 	/**
@@ -477,23 +463,15 @@ class LineMaterial extends ShaderMaterial {
 	 * @default false
 	 */
 	get worldUnits() {
-
-		return 'WORLD_UNITS' in this.defines;
-
+		return "WORLD_UNITS" in this.defines;
 	}
 
-	set worldUnits( value ) {
-
-		if ( value === true ) {
-
-			this.defines.WORLD_UNITS = '';
-
+	set worldUnits(value) {
+		if (value === true) {
+			this.defines.WORLD_UNITS = "";
 		} else {
-
 			delete this.defines.WORLD_UNITS;
-
 		}
-
 	}
 
 	/**
@@ -504,16 +482,12 @@ class LineMaterial extends ShaderMaterial {
 	 * @default 1
 	 */
 	get linewidth() {
-
 		return this.uniforms.linewidth.value;
-
 	}
 
-	set linewidth( value ) {
-
-		if ( ! this.uniforms.linewidth ) return;
+	set linewidth(value) {
+		if (!this.uniforms.linewidth) return;
 		this.uniforms.linewidth.value = value;
-
 	}
 
 	/**
@@ -523,29 +497,19 @@ class LineMaterial extends ShaderMaterial {
 	 * @default false
 	 */
 	get dashed() {
-
-		return 'USE_DASH' in this.defines;
-
+		return "USE_DASH" in this.defines;
 	}
 
-	set dashed( value ) {
-
-		if ( ( value === true ) !== this.dashed ) {
-
+	set dashed(value) {
+		if ((value === true) !== this.dashed) {
 			this.needsUpdate = true;
-
 		}
 
-		if ( value === true ) {
-
-			this.defines.USE_DASH = '';
-
+		if (value === true) {
+			this.defines.USE_DASH = "";
 		} else {
-
 			delete this.defines.USE_DASH;
-
 		}
-
 	}
 
 	/**
@@ -555,15 +519,11 @@ class LineMaterial extends ShaderMaterial {
 	 * @default 1
 	 */
 	get dashScale() {
-
 		return this.uniforms.dashScale.value;
-
 	}
 
-	set dashScale( value ) {
-
+	set dashScale(value) {
 		this.uniforms.dashScale.value = value;
-
 	}
 
 	/**
@@ -573,15 +533,11 @@ class LineMaterial extends ShaderMaterial {
 	 * @default 1
 	 */
 	get dashSize() {
-
 		return this.uniforms.dashSize.value;
-
 	}
 
-	set dashSize( value ) {
-
+	set dashSize(value) {
 		this.uniforms.dashSize.value = value;
-
 	}
 
 	/**
@@ -591,15 +547,11 @@ class LineMaterial extends ShaderMaterial {
 	 * @default 0
 	 */
 	get dashOffset() {
-
 		return this.uniforms.dashOffset.value;
-
 	}
 
-	set dashOffset( value ) {
-
+	set dashOffset(value) {
 		this.uniforms.dashOffset.value = value;
-
 	}
 
 	/**
@@ -609,15 +561,11 @@ class LineMaterial extends ShaderMaterial {
 	 * @default 0
 	 */
 	get gapSize() {
-
 		return this.uniforms.gapSize.value;
-
 	}
 
-	set gapSize( value ) {
-
+	set gapSize(value) {
 		this.uniforms.gapSize.value = value;
-
 	}
 
 	/**
@@ -627,16 +575,12 @@ class LineMaterial extends ShaderMaterial {
 	 * @default 1
 	 */
 	get opacity() {
-
 		return this.uniforms.opacity.value;
-
 	}
 
-	set opacity( value ) {
-
-		if ( ! this.uniforms ) return;
+	set opacity(value) {
+		if (!this.uniforms) return;
 		this.uniforms.opacity.value = value;
-
 	}
 
 	/**
@@ -647,15 +591,11 @@ class LineMaterial extends ShaderMaterial {
 	 * @type {Vector2}
 	 */
 	get resolution() {
-
 		return this.uniforms.resolution.value;
-
 	}
 
-	set resolution( value ) {
-
-		this.uniforms.resolution.value.copy( value );
-
+	set resolution(value) {
+		this.uniforms.resolution.value.copy(value);
 	}
 
 	/**
@@ -665,33 +605,22 @@ class LineMaterial extends ShaderMaterial {
 	 * @type {boolean}
 	 */
 	get alphaToCoverage() {
-
-		return 'USE_ALPHA_TO_COVERAGE' in this.defines;
-
+		return "USE_ALPHA_TO_COVERAGE" in this.defines;
 	}
 
-	set alphaToCoverage( value ) {
+	set alphaToCoverage(value) {
+		if (!this.defines) return;
 
-		if ( ! this.defines ) return;
-
-		if ( ( value === true ) !== this.alphaToCoverage ) {
-
+		if ((value === true) !== this.alphaToCoverage) {
 			this.needsUpdate = true;
-
 		}
 
-		if ( value === true ) {
-
-			this.defines.USE_ALPHA_TO_COVERAGE = '';
-
+		if (value === true) {
+			this.defines.USE_ALPHA_TO_COVERAGE = "";
 		} else {
-
 			delete this.defines.USE_ALPHA_TO_COVERAGE;
-
 		}
-
 	}
-
 }
 
 export { LineMaterial };
