@@ -2,14 +2,22 @@ import LandingSketch from "@/islands/LandingSketch.tsx";
 
 export default function LandingPage() {
   return (
-    <div style={{ position: "relative", width: "100%", height: "100vh" }}>
+    <div
+      style={{
+        position: "relative",
+        width: "50%",
+        height: "100vh",
+        color: "pink",
+        background: "deeppink",
+      }}
+    >
       <LandingSketch />
       <a
         href="/blog"
         style={{
           position: "absolute",
           inset: 0,
-          zIndex: 5,
+          zIndex: 10,
           display: "block",
           cursor: "pointer",
         }}
