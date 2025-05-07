@@ -5,7 +5,7 @@ export default function LandingPage() {
     <div
       style={{
         position: "relative",
-        width: "50%",
+        width: "100%",
         height: "100vh",
         color: "pink",
         background: "deeppink",

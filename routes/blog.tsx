@@ -18,7 +18,7 @@ export default function BlogIndexPage(props: PageProps<Post[]>) {
           class="text-5xl"
           style="font-family: 'Clarity City', sans-serif; font-weight: 900;"
         >
-          Blog Template 2.0
+          ✨ Creative Coding Blog ✨
         </h1>
         <ThemeToggle />
       </div>
