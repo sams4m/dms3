@@ -1,7 +1,7 @@
 /* Sans-serif font declarations (Clarity City) */
 @font-face {
-  font-family: 'Clarity City';
-  src: url('/fonts/Clarity_City/ClarityCity-Black.woff2') format('woff2');
+  font-family: "Clarity City";
+  src: url("/fonts/Clarity_City/ClarityCity-Black.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -9,8 +9,8 @@
 
 /* Monospace font declarations (Fira Code) */
 @font-face {
-  font-family: 'Fira Code';
-  src: url('/fonts/Fira_Code/FiraCode-VF.woff2') format('woff2-variations');
+  font-family: "Fira Code";
+  src: url("/fonts/Fira_Code/FiraCode-VF.woff2") format("woff2-variations");
   font-weight: 300 700;
   font-style: normal;
   font-display: swap;
@@ -18,64 +18,78 @@
 
 /* Accessibility font declarations (Atkinson Hyperlegible) */
 @font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Regular-102a.woff2') format('woff2');
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Regular-102a.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Italic-102a.woff2') format('woff2');
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Italic-102a.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Bold-102a.woff2') format('woff2');
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Bold-102a.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Atkinson Hyperlegible';
-  src: url('/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-BoldItalic-102a.woff2') format('woff2');
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-BoldItalic-102a.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: italic;
+  font-display: swap;
+}
+
+/* PRESTIGE ELITE TYPE WRITER FONT */
+@font-face {
+  font-family: "prestige-elite-std", monospace;
+  src: url("https://use.typekit.net/jyw5vxq.css");
+  font-weight: 600;
+  font-style: normal;
+  color: #ceb5d4;
   font-display: swap;
 }
 
 /* Light mode variables */
 :root {
-  --color-primary          : turquoise;
-  --color-secondary        : #e5e7eb;
-  --color-background       : #ffffff;
-  --color-foreground       : #111827;
-  --color-muted            : #e5e7eb;
-  --color-muted-foreground : #6b7280;
-  --color-accent           : #f3f4f6;
+  --color-primary: turquoise;
+  --color-secondary: #e5e7eb;
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-muted: #e5e7eb;
+  --color-muted-foreground: #6b7280;
+  --color-accent: #f3f4f6;
   --color-accent-foreground: #1f2937;
 }
 
 /* Dark mode variables */
 .dark {
-  --color-primary          : deeppink;
-  --color-secondary        : #374151;
-  --color-background       : #0e1117;
-  --color-foreground       : #f9fafb;
-  --color-muted            : #374151;
-  --color-muted-foreground : #9ca3af;
-  --color-accent           : #1f2937;
-  --color-accent-foreground: #f3f4f6;
+  --color-primary: #ceb5d4;
+  --color-secondary: #ceb5d4;
+  --color-background: #102b53;
+  --color-foreground: #ceb5d4;
+  --color-muted: #374151;
+  --color-muted-foreground: #7d9fc0;
+  --color-accent: #7d9fc0;
+  --color-accent-foreground: #ceb5d4;
 }
 
 /* Base styles */
 body {
-  font-family: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "prestige-elite-std", monospace;
   background-color: var(--color-background);
   color: var(--color-foreground);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -86,11 +100,11 @@ button[aria-label*="Switch to"] {
   transition: all 0.2s ease-in-out;
 }
 button[aria-label*="Switch to"]:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 .dark button[aria-label*="Switch to"] svg {
-  color: #ffffff;
+  color: #102b53;
 }
 
 /* Code block styles */
@@ -101,16 +115,17 @@ button[aria-label*="Switch to"]:focus {
 
 .code-block-container pre {
   margin-top: 0 !important;
-  font-family: 'Fira Code', monospace !important;
+  font-family: "Fira Code", monospace !important;
 }
 
 .markdown-body pre code {
-  font-family: 'Fira Code', monospace !important;
+  font-family: "Fira Code", monospace !important;
 }
 
 /* Main text in markdown */
 .markdown-body {
-  font-family: 'Atkinson Hyperlegible', sans-serif !important;
+  font-family: "prestige-elite-std", monospace !important;
+  color: var(--color-accent);
 }
 
 .ligature-toggle {
