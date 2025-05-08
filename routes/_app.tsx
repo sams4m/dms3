@@ -8,10 +8,8 @@ export default function App({ Component }: AppProps) {
       <Head>
         <link rel="stylesheet" href="/globals.css" />
         <link rel="stylesheet" href="/markdown-dark.css" />
-        <script
-          id="theme-script"
-          dangerouslySetInnerHTML={{
-            __html: `
+        <script id="theme-script" dangerouslySetInnerHTML={{
+          __html: `
             (function() {
               // On page load or when changing themes, best to add inline in \`head\` to avoid FOUC
               const savedTheme = localStorage.getItem("theme");
@@ -24,8 +22,7 @@ export default function App({ Component }: AppProps) {
               }
             })();
           `,
-          }}
-        />
+        }} />
       </Head>
       <Component />
     </>

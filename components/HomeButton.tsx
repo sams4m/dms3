@@ -1,11 +1,12 @@
-export default function HomeButton() {
-  return (
-    <a
-      href="/blog"
-      class="rounded-md p-2 bg-transparent border border-primary text-foreground hover:bg-primary"
-      aria-label="Back to index"
-    >
-      ← index
-    </a>
-  );
+export default function HomeButton () {
+   return (
+      <a
+         href="/blog"
+         class="rounded-md p-2 bg-transparent border border-primary text-foreground hover:bg-primary"
+         aria-label="Back to index"
+      >
+         ← index
+      </a>
+   )
 }
+
