@@ -74,6 +74,7 @@
   --color-muted-foreground: #f27794;
   --color-accent: #f3f4f6;
   --color-accent-foreground: #f356a7;
+  --color-landing: #102b53;
 }
 
 /* Dark mode variables */
@@ -87,6 +88,7 @@
   --color-muted-foreground: #7d9fc0;
   --color-accent: #7d9fc0;
   --color-accent-foreground: #ceb5d4;
+  --color-landing: #f356a7;
 }
 
 /* Base styles */

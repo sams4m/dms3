@@ -9,6 +9,7 @@ import * as $blog from "./routes/blog.tsx";
 import * as $feed from "./routes/feed.ts";
 import * as $index from "./routes/index.tsx";
 import * as $CodeBlockToggle from "./islands/CodeBlockToggle.tsx";
+import * as $LandingSketch_copy from "./islands/LandingSketch copy.tsx";
 import * as $LandingSketch from "./islands/LandingSketch.tsx";
 import * as $ThemeToggle from "./islands/ThemeToggle.tsx";
 import type { Manifest } from "$fresh/server.ts";
@@ -24,6 +25,7 @@ const manifest = {
   },
   islands: {
     "./islands/CodeBlockToggle.tsx": $CodeBlockToggle,
+    "./islands/LandingSketch copy.tsx": $LandingSketch_copy,
     "./islands/LandingSketch.tsx": $LandingSketch,
     "./islands/ThemeToggle.tsx": $ThemeToggle,
   },
