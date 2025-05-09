@@ -16,7 +16,7 @@ export default function BlogIndexPage(props: PageProps<Post[]>) {
       <div class="flex justify-between items-center">
         <h1
           class="text-5xl"
-          style="prestige-elite-std, monospace; font-weight: 600;"
+          style="prestige-elite-std, monospace; font-weight: 300;"
         >
           ✨ Creative Coding ✨
         </h1>
@@ -36,7 +36,7 @@ function PostCard(props: { post: Post }) {
   return (
     <div class="py-8 border-t border-muted">
       <a class="sm:col-span-2" href={`/${post.slug}`}>
-        <h3 class="text-3xl font-bold">{post.title}</h3>
+        <h3 class="text-3xl">{post.title}</h3>
         <time class="text-muted-foreground">
           {new Date(post.publishedAt).toLocaleDateString("en-us", {
             year: "numeric",

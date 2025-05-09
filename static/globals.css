@@ -1,11 +1,11 @@
 /* Sans-serif font declarations (Clarity City) */
-@font-face {
+/* @font-face {
   font-family: "Clarity City";
   src: url("/fonts/Clarity_City/ClarityCity-Black.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
-}
+} */
 
 /* Monospace font declarations (Fira Code) */
 @font-face {
@@ -17,7 +17,7 @@
 }
 
 /* Accessibility font declarations (Atkinson Hyperlegible) */
-@font-face {
+/* @font-face {
   font-family: "Atkinson Hyperlegible";
   src: url("/fonts/Atkinson-Hyperlegible/Atkinson-Hyperlegible-Regular-102a.woff2")
     format("woff2");
@@ -51,7 +51,7 @@
   font-weight: 700;
   font-style: italic;
   font-display: swap;
-}
+} */
 
 /* PRESTIGE ELITE TYPE WRITER FONT */
 @font-face {
@@ -73,7 +73,7 @@
   --color-muted: #f27794;
   --color-muted-foreground: #f27794;
   --color-accent: #f3f4f6;
-  --color-accent-foreground: #1f2937;
+  --color-accent-foreground: #f356a7;
 }
 
 /* Dark mode variables */
@@ -95,6 +95,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-text);
   transition: background-color 0.3s ease, color 0.3s ease;
+  /* font-weight: 300; */
 }
 
 /* Theme toggle button styles */
@@ -102,11 +103,11 @@ button[aria-label*="Switch to"] {
   transition: all 0.2s ease-in-out;
 }
 button[aria-label*="Switch to"]:focus {
-  outline: 2px solid var(--color-accent);
+  outline: 1px solid var(--color-muted-foreground);
   outline-offset: 2px;
 }
 .dark button[aria-label*="Switch to"] svg {
-  color: #102b53;
+  color: var(--color-background);
 }
 
 /* Code block styles */
@@ -135,7 +136,7 @@ button[aria-label*="Switch to"]:focus {
   position: absolute;
   top: 8px;
   right: 8px;
-  background-color: var(--color-accent);
+  background-color: var(--color-background);
   color: var(--color-accent-foreground);
   padding: 4px 8px;
   border-radius: 4px;
