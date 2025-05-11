@@ -8,13 +8,15 @@ class SinuStar {
   private x_phase_offset: number = 0;
   private size: number = 0;
   private points: number = 0;
+  private position: number = 0;
 
   constructor(
     x_speed: number,
     y_rate: number,
     x_phase: number,
     y_phase: number,
-    points: number
+    points: number,
+    position: number
   ) {
     this.x_speed = x_speed;
     this.y_rate = y_rate;
@@ -22,19 +24,43 @@ class SinuStar {
     this.y_phase_offset = y_phase;
     this.size = 20;
     this.points = points;
+    this.position = position;
   }
 
   draw(ctx: CanvasRenderingContext2D, t: number, col: string) {
     if (!ctx) return;
     const cnv = ctx.canvas;
 
+    let starposa, starposb;
+
+    // bottom wave
+    if (this.position == 1) {
+      starposa = cnv.height;
+      starposb = cnv.height;
+    }
+    // top wave
+    if (this.position == -1) {
+      starposa = cnv.height;
+      starposb = 0;
+    }
+    // bottom line
+    if (this.position == 2) {
+      starposa = 0;
+      starposb = innerHeight - 20;
+    }
+    // top line
+    else if (this.position == -2) {
+      starposa = 0;
+      starposb = 20;
+    }
+
     const x_phase = (t * this.x_speed + this.x_phase_offset) % 1;
     const x_pos = (cnv.width + this.size) * x_phase - this.size;
 
     const y_phase = (t * this.y_rate * Math.PI * 2 + this.y_phase_offset) % 1;
     const y_sig = Math.sin(y_phase * Math.PI * 2);
-    const y_wid = cnv.height / 3;
-    const y_pos = cnv.height / 2 - this.size / 2 + y_sig * y_wid;
+    const y_wid = starposa / 3;
+    const y_pos = starposb - this.size / 2 + y_sig * y_wid;
 
     //ctx.fillStyle = col;
     // ctx.fillRect(x_pos, y_pos, this.size, this.size);
@@ -110,13 +136,35 @@ export default function LandingSketch() {
 
       // Create regular stars
       const numStars = 36;
-      const stars: SinuStar[] = [];
+      // wave stars
+      const starsA: SinuStar[] = [],
+        starsB: SinuStar[] = [];
+      // flat stars
+      const starsC: SinuStar[] = [],
+        starsD: SinuStar[] = [];
       for (let i = 0; i < numStars; i++) {
         const phase = i / numStars;
         const offset = (i % 3) / 3;
         const y_phase = phase + offset;
         const points = Math.floor(Math.random() * (9 - 4) + 4);
-        stars.push(new SinuStar(x_speed, y_rate, phase, y_phase, points));
+        // wave vars
+        const positionA = 1,
+          positionB = -1;
+        // line vars
+        const positionC = 2,
+          positionD = -2;
+        starsA.push(
+          new SinuStar(x_speed, y_rate, phase, y_phase, points, positionA)
+        );
+        starsB.push(
+          new SinuStar(x_speed, y_rate, phase, y_phase, points, positionB)
+        );
+        starsC.push(
+          new SinuStar(x_speed, y_rate, phase, y_phase, points, positionC)
+        );
+        starsD.push(
+          new SinuStar(x_speed, y_rate, phase, y_phase, points, positionD)
+        );
       }
 
       const drawFrame = (ms: number) => {
@@ -137,7 +185,22 @@ export default function LandingSketch() {
 
         const t = ms / 1000;
 
-        stars.forEach((s, i) => {
+        starsA.forEach((s, i) => {
+          const col = i === 0 ? accentColour : fgColour;
+          s.draw(ctx, t, col);
+        });
+
+        starsB.forEach((s, i) => {
+          const col = i === 0 ? accentColour : fgColour;
+          s.draw(ctx, t, col);
+        });
+
+        starsC.forEach((s, i) => {
+          const col = i === 0 ? accentColour : fgColour;
+          s.draw(ctx, t, col);
+        });
+
+        starsD.forEach((s, i) => {
           const col = i === 0 ? accentColour : fgColour;
           s.draw(ctx, t, col);
         });
